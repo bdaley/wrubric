@@ -1,0 +1,9 @@
+{
+  "name": "wrubric",
+  "repository": "https://github.com/bdaley/wrubric",
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-nodejs"
+    }
+  ]
+}
