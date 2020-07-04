@@ -22,6 +22,13 @@ export default {
   ** Customize the progress-bar color
   */
   loading: { color: '#fff' },
+
+  /**
+   * @nuxt/components
+   * @url https://github.com/nuxt/components
+   */
+  components: true,
+
   /*
   ** Global CSS
   */
@@ -37,6 +44,7 @@ export default {
   */
   buildModules: [
     '@nuxtjs/vuetify',
+    '@nuxt/components'
   ],
   /*
   ** Nuxt.js modules

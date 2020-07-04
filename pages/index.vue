@@ -14,6 +14,9 @@
           sm8
           md6
         >
+          <v-form @submit.prevent="scan">
+
+
             <h3>Test your page before submitting!</h3>
 
               <v-layout
@@ -30,9 +33,22 @@
                   label="Website URL"
                   placeholder="https://"
                   prepend-inner-icon="mdi-web"
+                  type="url"
+                  required
+                  v-model="url"
                 ></v-text-field>
-              <v-btn depressed dark large color="blue darken-4" class="ml-4">Scan</v-btn>
+              <v-btn
+                depressed
+                dark
+                large
+                color="blue darken-4"
+                class="ml-4"
+                type="submit"
+
+              >Scan</v-btn>
               </v-layout>
+          </v-form>
+
         </v-flex>
       </v-layout>
 
@@ -40,17 +56,27 @@
     <v-container>
 
       <v-layout
-        column
+        row
         justify-center
-        align-center
+        align-stretch
+
 
       >
         <v-flex
           xs12
-          sm8
-          md6
+          sm10
+          md8
         >
-          <div class="text-center">
+          <div class="validators">
+
+            <!-- @todo at some point we need to dynamically import -->
+            <!-- @url https://github.com/nuxt/components/issues/13 -->
+            <!-- <template v-for="plugin in plugins">
+              <component :key="plugin" :is="plugin">{{plugin}}</component>
+            </template> -->
+
+            <Validator></Validator>
+            <WebOne></WebOne>
           </div>
         </v-flex>
       </v-layout>
@@ -64,9 +90,18 @@
 </template>
 
 <script>
-
 export default {
-  components: {
+  data() {
+    return {
+      url: '',
+      running: false
+    }
+  },
+  methods: {
+    scan: function(){
+      this.running = true;
+      this.$store.commit("webpage/setUrl", this.url)
+    }
   }
 }
 </script>
@@ -79,6 +114,15 @@ export default {
 
 .v-text-field__details {
   display: none;
+}
+
+.validators > div {
+  margin: 30px 0;
+}
+
+
+.validators > div:first-child {
+  margin-top:15px;
 }
 
 </style>
